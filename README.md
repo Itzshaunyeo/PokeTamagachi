@@ -12,8 +12,6 @@ Choose a starter family and your new companion will begin as an egg. Care for th
 
 Install [Node.js](https://nodejs.org/) first. Download or clone this repository, open a terminal in the project folder, and run:
 
-On Windows, you can instead double-click `PokeTamagachi Installer.exe` once to install the required files automatically. After installation finishes, double-click `PokeTamagachi.exe` whenever you want to start the game.
-
 ```bash
 npm install
 npm start
