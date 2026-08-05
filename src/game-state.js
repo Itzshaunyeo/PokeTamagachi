@@ -23,7 +23,7 @@
   function advance(pet,now=Date.now()){
     if(!pet||!pet.alive)return pet;
     const hours=Math.max(0,(now-pet.lastUpdated)/HOUR);let p=JSON.parse(JSON.stringify(pet)),s=p.stats;
-    if(hours){if(p.isHatched){s.hunger=clamp(s.hunger-hours*1.5);s.energy=clamp(s.energy-hours)}s.happiness=clamp(s.happiness-hours*.8);s.hygiene=clamp(s.hygiene-hours*.6);const watched=p.isHatched?[s.hunger,s.happiness,s.energy,s.hygiene]:[s.happiness,s.hygiene],healthDrain=watched.reduce((total,value)=>total+(value<=0?12:value<15?5:0),0);s.health=clamp(s.health-hours*healthDrain+(healthDrain===0&&s.health<100?hours:0.5*hours));}
+    if(hours){if(p.isHatched){s.hunger=clamp(s.hunger-hours*5);s.energy=clamp(s.energy-hours*4)}s.happiness=clamp(s.happiness-hours*3);s.hygiene=clamp(s.hygiene-hours*3);const watched=p.isHatched?[s.hunger,s.happiness,s.energy,s.hygiene]:[s.happiness,s.hygiene],healthDrain=watched.reduce((total,value)=>total+(value<=0?12:value<15?5:0),0);s.health=clamp(s.health-hours*healthDrain+(healthDrain===0&&s.health<100?hours:0.5*hours));}
     updateGrowth(p,now);
     if(p.isHatched&&p.daycareUntil&&now>=p.daycareUntil){const reward=100+p.level*10;p.daycareUntil=null;p.daycareStartedAt=null;p=gainExp(p,reward);p.journal.unshift({at:now,text:`Returned from Daycare and earned ${reward} EXP!`});s=p.stats;}
     p.lastUpdated=now;if(s.health<=0){p.alive=false;p.journal.unshift({at:now,text:`${p.name||'Your companion'} passed on. Your memories remain.`});}return p;
