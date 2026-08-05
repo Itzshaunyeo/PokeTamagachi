@@ -16,14 +16,14 @@
   function advance(pet,now=Date.now()){
     if(!pet||!pet.alive)return pet;
     const hours=Math.max(0,(now-pet.lastUpdated)/HOUR);const p=JSON.parse(JSON.stringify(pet)),s=p.stats;
-    if(hours){s.hunger=clamp(s.hunger-hours*1.5);s.happiness=clamp(s.happiness-hours*.8);s.energy=clamp(s.energy-hours);s.hygiene=clamp(s.hygiene-hours*.6);const critical=[s.hunger,s.happiness,s.energy,s.hygiene].filter(v=>v<15).length;s.health=clamp(s.health-hours*critical*5+(critical===0&&s.health<100?hours:0.5*hours));}
+    if(hours){if(p.isHatched){s.hunger=clamp(s.hunger-hours*1.5);s.energy=clamp(s.energy-hours)}s.happiness=clamp(s.happiness-hours*.8);s.hygiene=clamp(s.hygiene-hours*.6);const watched=p.isHatched?[s.hunger,s.happiness,s.energy,s.hygiene]:[s.happiness,s.hygiene],critical=watched.filter(v=>v<15).length;s.health=clamp(s.health-hours*critical*5+(critical===0&&s.health<100?hours:0.5*hours));}
     updateGrowth(p,now);
     p.lastUpdated=now;if(s.health<=0){p.alive=false;p.journal.unshift({at:now,text:`${p.name||'Your companion'} passed on. Your memories remain.`});}return p;
   }
   const effects={feed:{hunger:28,happiness:3,energy:-2},play:{happiness:24,energy:-12,hunger:-6,hygiene:-4},rest:{energy:36,health:5,hunger:-8},clean:{hygiene:40,happiness:3},heal:{health:30,energy:8,happiness:-3}};
   function act(pet,action,now=Date.now()){
     const p=advance(pet,now);if(!p?.alive||!effects[action])return p;const out=JSON.parse(JSON.stringify(p));
-    for(const [key,value] of Object.entries(effects[action]))out.stats[key]=clamp(out.stats[key]+value);
+    const eggNeeds=new Set(['happiness','hygiene','health']);for(const [key,value] of Object.entries(effects[action]))if(out.isHatched||eggNeeds.has(key))out.stats[key]=clamp(out.stats[key]+value);
     if(!out.isHatched)out.carePoints=(out.carePoints||0)+1;updateGrowth(out,now);
     const labels={feed:'Shared a tasty berry.',play:'Played a lively little game.',rest:'Curled up for a good rest.',clean:'Freshened up the habitat.',heal:'Took some medicine.'};
     out.lastAction=now;out.journal.unshift({at:now,text:labels[action]});out.journal=out.journal.slice(0,30);return out;
