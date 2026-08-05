@@ -20,6 +20,7 @@ A nostalgic desktop virtual-pet game with a persistent, single-companion lifecyc
 - Every new starter begins as a mystery egg. The egg hatches after 24 hours and at least three care interactions; evolution time starts when it hatches.
 - Battles award EXP and drive progression. Existing official level thresholds are preserved; friendship, stone, daytime, and trade evolutions use level 20 as an average substitute. Later stages use level 30 or 35 where needed to prevent skipping stages.
 - Eevee randomly evolves at level 20 into a Generation 1–5 option: Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, or Glaceon.
+- Evolution is never automatic. Once a requirement is met, a red **Evolve** button appears beside the Pokémon’s name; each press confirms one evolution stage, with Eevee’s random branch chosen at confirmation time.
 - Pokémon learn moves by level, equip four at a time, and can relearn archived moves.
 - Form-specific level-up learnsets, move power, type, PP, priority, and critical-hit stages are bundled from Pokémon Black/White data via PokéAPI. Battles apply STAB, resistance, weakness, dual-type multipliers, and immunities, with effectiveness and critical-hit feedback in the dialogue.
 - LAN battle hosting and discovery lets nearby desktop players battle over the same Wi‑Fi network.
