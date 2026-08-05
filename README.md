@@ -24,6 +24,7 @@ A nostalgic desktop virtual-pet game with a persistent, single-companion lifecyc
 - Form-specific level-up learnsets, move power, type, PP, priority, and critical-hit stages are bundled from Pokémon Black/White data via PokéAPI. Battles apply STAB, resistance, weakness, dual-type multipliers, and immunities, with effectiveness and critical-hit feedback in the dialogue.
 - LAN battle hosting and discovery lets nearby desktop players battle over the same Wi‑Fi network.
 - The active-pet directory is a private Battle/Train hub: Battle lists each discovered LAN opponent, while Train shows level, EXP, IVs, EVs, equipped moves, pending moves, evolution requirements, and the Move Relearner.
+- Send a hatched Pokémon to Daycare from Train for a two-hour (`2:00:00`) solo training session. A live countdown shows its return time, LAN battles remain locked while it is away, and EXP is awarded on return.
 - The starter directory is hidden after selection and only returns when no living companion exists.
 
 ## Run

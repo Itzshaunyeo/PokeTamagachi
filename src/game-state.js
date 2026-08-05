@@ -1,7 +1,7 @@
 (function(root){
-  const MAX=100, HOUR=3600000, DAY=86400000;
+  const MAX=100, HOUR=3600000, DAY=86400000, DAYCARE_DURATION=2*HOUR;
   const clamp=n=>Math.max(0,Math.min(MAX,Math.round(n*100)/100));
-  function newPet(id,name,now=Date.now(),forms=[],profile={}){const learnsets=profile.learnsets||{},learnset=learnsets[forms?.[0]?.id]||profile.learnset||[],startingAll=[...new Set(learnset.filter(x=>x.level<=1).map(x=>x.move))],starting=startingAll.slice(-4),stats=['hp','attack','defense','spAttack','spDefense','speed'],ivs={},evs={};for(const stat of stats){ivs[stat]=Math.floor(Math.random()*32);evs[stat]=0}return{id,name:name||'',bornAt:now,hatchedAt:null,lastUpdated:now,lastAction:now,stage:'Egg',isHatched:false,carePoints:0,formIndex:0,forms,evolutionRules:profile.evolutionRules||[],level:1,exp:0,learnsets,learnset,moves:starting,moveArchive:startingAll,pendingMoves:[],ivs,evs,items:[],trades:0,wins:0,losses:0,alive:true,stats:{hunger:88,happiness:82,energy:76,hygiene:90,health:100},journal:[{at:now,text:'A mysterious egg arrived. Care for it every day!'}]};}
+  function newPet(id,name,now=Date.now(),forms=[],profile={}){const learnsets=profile.learnsets||{},learnset=learnsets[forms?.[0]?.id]||profile.learnset||[],startingAll=[...new Set(learnset.filter(x=>x.level<=1).map(x=>x.move))],starting=startingAll.slice(-4),stats=['hp','attack','defense','spAttack','spDefense','speed'],ivs={},evs={};for(const stat of stats){ivs[stat]=Math.floor(Math.random()*32);evs[stat]=0}return{id,name:name||'',bornAt:now,hatchedAt:null,lastUpdated:now,lastAction:now,stage:'Egg',isHatched:false,carePoints:0,formIndex:0,forms,evolutionRules:profile.evolutionRules||[],level:1,exp:0,learnsets,learnset,moves:starting,moveArchive:startingAll,pendingMoves:[],daycareUntil:null,ivs,evs,items:[],trades:0,wins:0,losses:0,alive:true,stats:{hunger:88,happiness:82,energy:76,hygiene:90,health:100},journal:[{at:now,text:'A mysterious egg arrived. Care for it every day!'}]};}
   function updateGrowth(p,now){
     if(!p.isHatched&&now-p.bornAt>=DAY&&(p.carePoints||0)>=3){p.isHatched=true;p.hatchedAt=now;p.stage='Hatchling';p.journal.unshift({at:now,text:`The egg hatched into ${p.forms?.[0]?.name||p.name}!`});}
     if(!p.isHatched){p.stage='Egg';return p;}
@@ -14,11 +14,14 @@
   function learnMove(pet,move,replaceIndex=null){const p=JSON.parse(JSON.stringify(pet));if(!p.moveArchive.includes(move))return p;if(p.moves.includes(move))return p;if(p.moves.length<4)p.moves.push(move);else if(Number.isInteger(replaceIndex)&&replaceIndex>=0&&replaceIndex<4)p.moves[replaceIndex]=move;return p;}
   function awardBattle(pet,result){let p=gainExp(advance(pet),result.exp||0);const stat=result.won?'attack':'defense',battleDamage=Math.max(0,100-(result.finalHp?.challenger??(result.won?100:0))),healthCost=Math.ceil(battleDamage*.25);p.evs[stat]=Math.min(252,(p.evs[stat]||0)+(result.won?2:1));p[result.won?'wins':'losses']=(p[result.won?'wins':'losses']||0)+1;p.stats.hunger=clamp(p.stats.hunger-6);p.stats.energy=clamp(p.stats.energy-10);p.stats.hygiene=clamp(p.stats.hygiene-4);p.stats.happiness=clamp(p.stats.happiness+(result.won?4:-5));p.stats.health=clamp(p.stats.health-healthCost);if(result.won&&p.stats.health===0)p.stats.health=1;p.journal.unshift({at:Date.now(),text:`${result.won?'Won':'Completed'} a LAN battle, took ${battleDamage} battle damage, and earned ${result.exp||0} EXP.`});if(result.item&&!p.items.includes(result.item))p.items.push(result.item);return p;}
   function useItem(pet,item){const p=JSON.parse(JSON.stringify(pet));if(!p.items.includes(item))return p;return checkEvolution(p)}
+  const isInDaycare=(pet,now=Date.now())=>Boolean(pet?.daycareUntil&&pet.daycareUntil>now);
+  function sendToDaycare(pet,now=Date.now()){const p=advance(pet,now);if(!p?.alive||!p.isHatched||isInDaycare(p,now))return p;p.daycareStartedAt=now;p.daycareUntil=now+DAYCARE_DURATION;p.journal.unshift({at:now,text:'Went to Daycare for a two-hour training session.'});return p}
   function advance(pet,now=Date.now()){
     if(!pet||!pet.alive)return pet;
-    const hours=Math.max(0,(now-pet.lastUpdated)/HOUR);const p=JSON.parse(JSON.stringify(pet)),s=p.stats;
+    const hours=Math.max(0,(now-pet.lastUpdated)/HOUR);let p=JSON.parse(JSON.stringify(pet)),s=p.stats;
     if(hours){if(p.isHatched){s.hunger=clamp(s.hunger-hours*1.5);s.energy=clamp(s.energy-hours)}s.happiness=clamp(s.happiness-hours*.8);s.hygiene=clamp(s.hygiene-hours*.6);const watched=p.isHatched?[s.hunger,s.happiness,s.energy,s.hygiene]:[s.happiness,s.hygiene],healthDrain=watched.reduce((total,value)=>total+(value<=0?12:value<15?5:0),0);s.health=clamp(s.health-hours*healthDrain+(healthDrain===0&&s.health<100?hours:0.5*hours));}
     updateGrowth(p,now);
+    if(p.isHatched&&p.daycareUntil&&now>=p.daycareUntil){const reward=100+p.level*10;p.daycareUntil=null;p.daycareStartedAt=null;p=gainExp(p,reward);p.journal.unshift({at:now,text:`Returned from Daycare and earned ${reward} EXP!`});s=p.stats;}
     p.lastUpdated=now;if(s.health<=0){p.alive=false;p.journal.unshift({at:now,text:`${p.name||'Your companion'} passed on. Your memories remain.`});}return p;
   }
   const effects={feed:{hunger:28,happiness:3,energy:-2},play:{happiness:24,energy:-12,hunger:-6,hygiene:-4},rest:{energy:36,health:5,hunger:-8},clean:{hygiene:40,happiness:3},heal:{health:30,energy:8,happiness:-3}};
@@ -29,5 +32,5 @@
     const labels={feed:'Shared a tasty berry.',play:'Played a lively little game.',rest:'Curled up for a good rest.',clean:'Freshened up the habitat.',heal:'Took some medicine.'};
     out.lastAction=now;out.journal.unshift({at:now,text:labels[action]});out.journal=out.journal.slice(0,30);return out;
   }
-  const api={newPet,advance,act,clamp,gainExp,learnMove,expForNext,checkEvolution,awardBattle,useItem};root.PokeState=api;if(typeof module!=='undefined')module.exports=api;
+  const api={newPet,advance,act,clamp,gainExp,learnMove,expForNext,checkEvolution,awardBattle,useItem,isInDaycare,sendToDaycare,DAYCARE_DURATION};root.PokeState=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);
