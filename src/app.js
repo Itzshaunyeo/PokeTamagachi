@@ -57,5 +57,4 @@ function bind(){
 }
 document.querySelector('[data-window="minimize"]')?.addEventListener('click',()=>window.desktopWindow?.minimize());
 document.querySelector('[data-window="close"]')?.addEventListener('click',()=>window.desktopWindow?.close());
-document.querySelector('[data-window="pin"]')?.addEventListener('click',async e=>{const pinned=await window.desktopWindow?.togglePin();e.currentTarget.classList.toggle('unpinned',!pinned);e.currentTarget.title=pinned?'Always on top':'Normal window'});
 setInterval(()=>{document.querySelector('#clock').textContent=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});const timer=document.querySelector('#daycare-timer');if(timer&&state?.daycareUntil){timer.textContent=duration(state.daycareUntil-Date.now());if(Date.now()>=state.daycareUntil){state=PokeState.advance(state);save();render(location.hash.slice(1)||'home')}}},1000);addEventListener('hashchange',()=>render());render();

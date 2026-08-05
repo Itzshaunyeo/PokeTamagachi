@@ -41,12 +41,6 @@ function createWindow() {
 
 ipcMain.on('window:minimize', event => BrowserWindow.fromWebContents(event.sender)?.minimize());
 ipcMain.on('window:close', event => BrowserWindow.fromWebContents(event.sender)?.close());
-ipcMain.handle('window:toggle-pin', event => {
-  const window = BrowserWindow.fromWebContents(event.sender);
-  const next = !window.isAlwaysOnTop();
-  window.setAlwaysOnTop(next, 'floating');
-  return next;
-});
 ipcMain.handle('lan:host',(_event,profile)=>lanBattle.startHost(profile));
 ipcMain.handle('lan:discover',()=>lanBattle.discover());
 ipcMain.handle('lan:join',(_event,peer,profile)=>{lanBattle.startHost(profile);return lanBattle.joinRoom(peer,{...profile,port:45821})});

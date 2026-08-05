@@ -2,8 +2,7 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('desktopWindow', {
   minimize: () => ipcRenderer.send('window:minimize'),
-  close: () => ipcRenderer.send('window:close'),
-  togglePin: () => ipcRenderer.invoke('window:toggle-pin')
+  close: () => ipcRenderer.send('window:close')
 });
 contextBridge.exposeInMainWorld('lanBattle', {
   host: profile => ipcRenderer.invoke('lan:host',profile),
