@@ -1,5 +1,5 @@
 (function(root){
-  const MAX=100, HOUR=3600000, DAY=86400000, DAYCARE_DURATION=2*HOUR, SHINY_CHANCE=1/4096;
+  const MAX=100, HOUR=3600000, DAY=86400000, DAYCARE_DURATION=2*HOUR, SHINY_CHANCE=1/100;
   const clamp=n=>Math.max(0,Math.min(MAX,Math.round(n*100)/100));
   const dayKey=now=>{const date=new Date(now);return`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`};
   const previousDayKey=now=>{const date=new Date(now);date.setDate(date.getDate()-1);return dayKey(date)};
