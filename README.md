@@ -4,7 +4,7 @@ A nostalgic desktop virtual-pet game with a persistent, single-companion lifecyc
 
 ## Features
 
-- Choose one companion from 54 evolving first-stage families in the original Kanto Pokédex.
+- Choose one companion from 61 evolving families connected to the original Kanto Pokédex.
 - Real-time hunger, happiness, energy, hygiene, and health decay—even while the app is closed.
 - Feed, play, rest, clean, and heal actions with a persistent care journal.
 - The selected companion remains locked until its lifecycle ends and the user restarts.
@@ -16,7 +16,7 @@ A nostalgic desktop virtual-pet game with a persistent, single-companion lifecyc
 - Pokémon-inspired pixel iconography: Poké Ball branding plus Great, Premier, Master, berry, and moon care icons.
 - Simple animated Poké Ball starter screen and animated companion idle art.
 - One-click starter selection without browser prompts.
-- Every selectable Pokémon begins a multi-stage Kanto evolution family; original single-stage species are excluded. Eevee retains all Generation 1–5 Eeveelutions as a special exception.
+- Every selectable Pokémon begins a multi-stage family containing an original Kanto species. Later baby forms such as Munchlax, Pichu, Elekid, and Magby are retained, while unrelated single-stage species are excluded. Eevee retains all Generation 1–5 Eeveelutions.
 - Every new starter begins as a mystery egg. The egg hatches after 24 hours and at least three care interactions; evolution time starts when it hatches.
 - Battles award EXP and drive progression. Existing official level thresholds are preserved; friendship, stone, daytime, and trade evolutions use level 20 as an average substitute. Later stages use level 30 or 35 where needed to prevent skipping stages.
 - Eevee randomly evolves at level 20 into a Generation 1–5 option: Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, or Glaceon.

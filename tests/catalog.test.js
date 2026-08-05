@@ -4,8 +4,9 @@ const { catalog } = require('../src/catalog.js');
 
 test('roster contains only evolving Kanto starters, with Eevee branches retained', () => {
   const names = new Set(catalog.map(entry => entry.name));
-  assert.equal(catalog.length, 54);
-  assert.equal(names.has('Pikachu'), true);
+  assert.equal(catalog.length, 61);
+  assert.equal(names.has('Pichu'), true);
+  assert.equal(names.has('Munchlax'), true);
   assert.equal(names.has('Dratini'), true);
   for (const removed of ['Minccino','Maushold','Tauros','Lapras','Ditto','Snorlax','Pinsir']) {
     assert.equal(names.has(removed), false);
@@ -13,11 +14,17 @@ test('roster contains only evolving Kanto starters, with Eevee branches retained
   for (const entry of catalog) {
     assert.equal(entry.forms[0].id, entry.id);
     assert.ok(entry.forms.length >= 2);
-    assert.ok(entry.id <= 151);
-    if(entry.id!==133)for(const form of entry.forms)assert.ok(form.id<=151);
-    assert.equal(entry.evolutionRules.length, entry.id===133?1:entry.forms.length-1);
+    assert.ok(entry.forms.some(form=>form.id<=151));
+    assert.equal(entry.evolutionRules.length,[133,236].includes(entry.id)?1:entry.forms.length-1);
     for (const form of entry.forms) assert.ok(form.types.length>=1&&form.types.length<=2);
   }
+});
+
+test('Kanto Pokémon with later baby forms remain as complete families',()=>{
+  const munchlax=catalog.find(entry=>entry.id===446);
+  assert.deepEqual(munchlax.forms.map(form=>form.name),['Munchlax','Snorlax']);
+  const elekid=catalog.find(entry=>entry.id===239);
+  assert.deepEqual(elekid.forms.map(form=>form.name),['Elekid','Electabuzz','Electivire']);
 });
 
 test('evolved forms carry their real form-specific typing',()=>{
