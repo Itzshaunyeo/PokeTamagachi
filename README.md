@@ -33,7 +33,71 @@ The app opens as a compact, always-on-top desktop widget. Drag the title bar to 
 
 ## App information
 
-The starter directory contains 61 evolving families connected to the original 151 Pokémon. Single-stage Kanto Pokémon are excluded, but Pokémon such as Snorlax remain available through later-generation baby forms. The available starters are Bulbasaur, Charmander, Squirtle, Caterpie, Weedle, Pidgey, Rattata, Spearow, Ekans, Pichu, Sandshrew, Nidoran♀, Nidoran♂, Cleffa, Vulpix, Igglybuff, Zubat, Oddish, Paras, Venonat, Diglett, Meowth, Psyduck, Mankey, Growlithe, Poliwag, Abra, Machop, Bellsprout, Tentacool, Geodude, Ponyta, Slowpoke, Magnemite, Doduo, Seel, Grimer, Shellder, Gastly, Drowzee, Krabby, Voltorb, Exeggcute, Cubone, Koffing, Rhyhorn, Horsea, Goldeen, Staryu, Magikarp, Eevee, Omanyte, Kabuto, Dratini, Tyrogue, Happiny, Mime Jr., Smoochum, Elekid, Magby, and Munchlax.
+The starter directory contains 61 evolving families connected to the original 151 Pokémon. Single-stage Kanto Pokémon are excluded, but Pokémon such as Snorlax remain available through later-generation baby forms.
+
+Available starters:
+
+- Bulbasaur
+- Charmander
+- Squirtle
+- Caterpie
+- Weedle
+- Pidgey
+- Rattata
+- Spearow
+- Ekans
+- Pichu
+- Sandshrew
+- Nidoran♀
+- Nidoran♂
+- Cleffa
+- Vulpix
+- Igglybuff
+- Zubat
+- Oddish
+- Paras
+- Venonat
+- Diglett
+- Meowth
+- Psyduck
+- Mankey
+- Growlithe
+- Poliwag
+- Abra
+- Machop
+- Bellsprout
+- Tentacool
+- Geodude
+- Ponyta
+- Slowpoke
+- Magnemite
+- Doduo
+- Seel
+- Grimer
+- Shellder
+- Gastly
+- Drowzee
+- Krabby
+- Voltorb
+- Exeggcute
+- Cubone
+- Koffing
+- Rhyhorn
+- Horsea
+- Goldeen
+- Staryu
+- Magikarp
+- Eevee
+- Omanyte
+- Kabuto
+- Dratini
+- Tyrogue
+- Happiny
+- Mime Jr.
+- Smoochum
+- Elekid
+- Magby
+- Munchlax
 
 Every starter can evolve. Pokémon with official level-based evolutions use their game levels; evolutions that normally require friendship, stones, trades, time of day, or another special condition use an adapted level requirement. Eevee evolves randomly at level 20 into Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, or Glaceon.
 
