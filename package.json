@@ -1,0 +1,1 @@
+{"name":"poketamagachi","version":"0.1.0","description":"A persistent desktop virtual-pet game with a data-driven Pokemon roster.","main":"electron.cjs","scripts":{"start":"electron .","dev":"electron .","test":"node --test"},"devDependencies":{"electron":"^37.2.6"},"license":"MIT"}
