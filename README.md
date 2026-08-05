@@ -101,4 +101,4 @@ Available starters:
 
 Every starter can evolve. Pokémon with official level-based evolutions use their game levels; evolutions that normally require friendship, stones, trades, time of day, or another special condition use an adapted level requirement. Eevee evolves randomly at level 20 into Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, or Glaceon.
 
-PokeTamagachi is a fan-made prototype. Pokémon names and artwork belong to Nintendo, Game Freak, and Creatures. The project is licensed under the MIT License.
+PokeTamagachi is an unofficial, fan-made, non-commercial prototype and is not affiliated with or endorsed by Nintendo, Game Freak, The Pokémon Company, or Creatures Inc. Pokémon, Pokémon character names, artwork, and all related trademarks and intellectual-property rights belong to their respective owners, including Nintendo, Game Freak, The Pokémon Company, and Creatures Inc. No ownership of the Pokémon franchise or its assets is claimed. The original source code for this fan project is licensed under the MIT License.
