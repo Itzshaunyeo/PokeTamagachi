@@ -34,7 +34,7 @@ The app opens as a compact, always-on-top desktop widget. Drag the title bar to 
 
 ## App information
 
-The starter directory contains 61 evolving families connected to the original 151 Pokémon. Single-stage Kanto Pokémon are excluded, but Pokémon such as Snorlax remain available through later-generation baby forms.
+The starter directory contains 60 evolving families connected to the original 151 Pokémon. Single-stage Kanto Pokémon are excluded, but Pokémon such as Snorlax remain available through later-generation baby forms.
 
 Available starters:
 
@@ -90,7 +90,6 @@ Available starters:
 - Magikarp
 - Eevee
 - Omanyte
-- Kabuto
 - Dratini
 - Tyrogue
 - Happiny
