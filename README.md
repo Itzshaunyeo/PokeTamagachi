@@ -7,6 +7,7 @@ A nostalgic desktop virtual-pet game with a persistent, single-companion lifecyc
 - Choose one companion from 61 evolving families connected to the original Kanto Pokédex.
 - Real-time hunger, happiness, energy, hygiene, and health decay—even while the app is closed.
 - Feed, play, rest, clean, and heal actions with a persistent care journal.
+- Each unique care action grants `+2 EXP` once per local day. Completing all five while every need is at least 60 builds a healthy daily streak worth `+20 EXP` per streak day, capped at day 7 and `+140 EXP`.
 - The selected companion remains locked until its lifecycle ends and the user restarts.
 - Roster entries live in `src/catalog.js`, making future additions a one-record update.
 - Desktop-ready Electron shell with a responsive browser fallback.
