@@ -21,6 +21,7 @@ A nostalgic desktop virtual-pet game with a persistent, single-companion lifecyc
 - Battles award EXP and drive progression. Existing official level thresholds are preserved; friendship, stone, daytime, and trade evolutions use level 20 as an average substitute. Later stages use level 30 or 35 where needed to prevent skipping stages.
 - Eevee randomly evolves at level 20 into a Generation 1–5 option: Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, or Glaceon.
 - Pokémon learn moves by level, equip four at a time, and can relearn archived moves.
+- Form-specific level-up learnsets, move power, type, PP, priority, and critical-hit stages are bundled from Pokémon Black/White data via PokéAPI. Battles apply STAB, resistance, weakness, dual-type multipliers, and immunities, with effectiveness and critical-hit feedback in the dialogue.
 - LAN battle hosting and discovery lets nearby desktop players battle over the same Wi‑Fi network.
 - The active-pet directory is a private Battle/Train hub: Battle lists each discovered LAN opponent, while Train shows level, EXP, IVs, EVs, equipped moves, pending moves, evolution requirements, and the Move Relearner.
 - The starter directory is hidden after selection and only returns when no living companion exists.
