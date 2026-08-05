@@ -4,11 +4,11 @@ const { catalog } = require('../src/catalog.js');
 
 test('roster contains only evolving Kanto starters, with Eevee branches retained', () => {
   const names = new Set(catalog.map(entry => entry.name));
-  assert.equal(catalog.length, 60);
+  assert.equal(catalog.length, 59);
   assert.equal(names.has('Pichu'), true);
   assert.equal(names.has('Munchlax'), true);
   assert.equal(names.has('Dratini'), true);
-  for (const removed of ['Kabuto','Minccino','Maushold','Tauros','Lapras','Ditto','Snorlax','Pinsir']) {
+  for (const removed of ['Kabuto','Omanyte','Minccino','Maushold','Tauros','Lapras','Ditto','Snorlax','Pinsir']) {
     assert.equal(names.has(removed), false);
   }
   for (const entry of catalog) {
