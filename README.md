@@ -23,8 +23,6 @@ The app opens as a compact, always-on-top desktop widget. Drag the title bar to 
 
 - Persistent egg, hatching, care, leveling, and manual evolution lifecycle
 - A hidden 1-in-100 shiny chance revealed when the egg hatches
-- Persistent poisoned, burned, sleepy, and sick conditions with specific treatments
-- A Pokédex Journal for discovered species, evolutions, shiny forms, moves, and LAN rivals
 - Optional permanent Pokémon nicknames; default names follow the current evolution
 - Five care needs: hunger, happiness, energy, hygiene, and health
 - Daily care EXP and a healthy-care streak bonus
