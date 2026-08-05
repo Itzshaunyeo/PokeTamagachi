@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs');
+const lanBattle = require('./lan-battle.cjs');
 
 function positionFile() { return path.join(app.getPath('userData'), 'window-position.json'); }
 function loadPosition() {
@@ -46,9 +47,12 @@ ipcMain.handle('window:toggle-pin', event => {
   window.setAlwaysOnTop(next, 'floating');
   return next;
 });
+ipcMain.handle('lan:host',(_event,profile)=>lanBattle.startHost(profile));
+ipcMain.handle('lan:discover',()=>lanBattle.discover());
+ipcMain.handle('lan:challenge',(_event,peer,payload)=>lanBattle.challenge(peer,payload));
 
 app.whenReady().then(() => {
   createWindow();
   app.on('activate', () => BrowserWindow.getAllWindows().length || createWindow());
 });
-app.on('window-all-closed', () => process.platform === 'darwin' || app.quit());
+app.on('window-all-closed', () => {lanBattle.stop();process.platform === 'darwin' || app.quit()});

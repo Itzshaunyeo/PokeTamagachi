@@ -4,7 +4,7 @@ A nostalgic desktop virtual-pet game with a persistent, single-companion lifecyc
 
 ## Features
 
-- Choose one companion from a 29-entry searchable roster, including Maushold.
+- Choose one basic-stage companion from a 29-entry searchable roster, including Minccino.
 - Real-time hunger, happiness, energy, hygiene, and health decay—even while the app is closed.
 - Feed, play, rest, clean, and heal actions with a persistent care journal.
 - The selected companion remains locked until its lifecycle ends and the user restarts.
@@ -14,6 +14,16 @@ A nostalgic desktop virtual-pet game with a persistent, single-companion lifecyc
 - Draggable title bar with always-on-top, minimize, and close controls.
 - Remembers its dragged screen position between launches.
 - Pokémon-inspired pixel iconography: Poké Ball branding plus Great, Premier, Master, berry, and moon care icons.
+- Simple animated Poké Ball starter screen and animated companion idle art.
+- One-click starter selection without browser prompts.
+- Every selectable Pokémon is a basic-stage species from Generations 1–5 with a complete evolution chain.
+- Every new starter begins as a mystery egg. The egg hatches after 24 hours and at least three care interactions; evolution time starts when it hatches.
+- Battles award EXP and drive progression. Existing official level thresholds are preserved; friendship, stone, daytime, and trade evolutions use level 20 as an average substitute. Later stages use level 30 or 35 where needed to prevent skipping stages.
+- Eevee randomly evolves at level 20 into a Generation 1–5 option: Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, or Glaceon.
+- Pokémon learn moves by level, equip four at a time, and can relearn archived moves.
+- LAN battle hosting and discovery lets nearby desktop players battle over the same Wi‑Fi network.
+- The active-pet directory is a private Battle/Train hub: Battle lists each discovered LAN opponent, while Train shows level, EXP, IVs, EVs, equipped moves, pending moves, evolution requirements, and the Move Relearner.
+- The starter directory is hidden after selection and only returns when no living companion exists.
 
 ## Run
 
@@ -24,4 +34,4 @@ npm start
 
 For a dependency-free preview, open `index.html` in a browser. Run logic tests with `npm test`.
 
-Pokémon names and sprite links are used for this fan-made prototype. Pokémon is owned by Nintendo, Game Freak, and Creatures. The generated key art is original and intentionally avoids official character likenesses.
+Pokémon names and sprite links are used for this fan-made prototype. Pokémon is owned by Nintendo, Game Freak, and Creatures.

@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PokeTamagachi</title><link rel="stylesheet" href="src/styles.css"><link rel="stylesheet" href="src/widget.css"><link rel="stylesheet" href="src/pokemon-icons.css"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PokeTamagachi</title><link rel="stylesheet" href="src/styles.css"><link rel="stylesheet" href="src/widget.css"><link rel="stylesheet" href="src/pokemon-icons.css"><link rel="stylesheet" href="src/starter.css"><link rel="stylesheet" href="src/egg.css"><link rel="stylesheet" href="src/battle.css"><link rel="stylesheet" href="src/train.css"></head>
 <body>
   <div id="app">
-    <header class="topbar"><a class="brand" href="#" data-nav="home"><span class="brand-mark pokeball-logo" aria-hidden="true"><i></i></span><span>PokeTamagachi<small>DESKTOP COMPANION</small></span></a><nav><button data-nav="home">Habitat</button><button data-nav="directory">Directory</button><button data-nav="journal">Journal</button></nav><div class="window-tools"><span class="clock" id="clock">--:--</span><button data-window="pin" title="Toggle always on top">◆</button><button data-window="minimize" title="Minimize">—</button><button data-window="close" title="Close">×</button></div></header>
+    <header class="topbar"><a class="brand" href="#" data-nav="home"><span class="brand-mark pokeball-logo" aria-hidden="true"><i></i></span><span>PokeTamagachi<small>DESKTOP COMPANION</small></span></a><nav><button data-nav="home">Habitat</button><button data-nav="hub">Battle / Train</button><button data-nav="journal">Journal</button></nav><div class="window-tools"><span class="clock" id="clock">--:--</span><button data-window="pin" title="Toggle always on top">◆</button><button data-window="minimize" title="Minimize">—</button><button data-window="close" title="Close">×</button></div></header>
     <main id="view" aria-live="polite"></main>
   </div>
-  <script src="src/catalog.js"></script><script src="src/game-state.js"></script><script src="src/app.js"></script>
+  <script src="src/catalog.js"></script><script src="src/battle-data.js"></script><script src="src/game-state.js"></script><script src="src/app.js"></script>
 </body>
 </html>
