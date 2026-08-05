@@ -8,5 +8,7 @@ contextBridge.exposeInMainWorld('desktopWindow', {
 contextBridge.exposeInMainWorld('lanBattle', {
   host: profile => ipcRenderer.invoke('lan:host',profile),
   discover: () => ipcRenderer.invoke('lan:discover'),
+  join: (peer,profile) => ipcRenderer.invoke('lan:join',peer,profile),
+  roomStatus: peer => ipcRenderer.invoke('lan:room-status',peer),
   challenge: (peer,payload) => ipcRenderer.invoke('lan:challenge',peer,payload)
 });

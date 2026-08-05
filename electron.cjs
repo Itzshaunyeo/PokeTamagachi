@@ -49,6 +49,8 @@ ipcMain.handle('window:toggle-pin', event => {
 });
 ipcMain.handle('lan:host',(_event,profile)=>lanBattle.startHost(profile));
 ipcMain.handle('lan:discover',()=>lanBattle.discover());
+ipcMain.handle('lan:join',(_event,peer,profile)=>{lanBattle.startHost(profile);return lanBattle.joinRoom(peer,{...profile,port:45821})});
+ipcMain.handle('lan:room-status',(_event,peer)=>lanBattle.roomStatus(peer));
 ipcMain.handle('lan:challenge',(_event,peer,payload)=>lanBattle.challenge(peer,payload));
 
 app.whenReady().then(() => {
