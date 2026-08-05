@@ -22,6 +22,7 @@ The app opens as a compact, always-on-top desktop widget. Drag the title bar to 
 ## Features
 
 - Persistent egg, hatching, care, leveling, and manual evolution lifecycle
+- Optional permanent Pokémon nicknames; default names follow the current evolution
 - Five care needs: hunger, happiness, energy, hygiene, and health
 - Daily care EXP and a healthy-care streak bonus
 - Level and EXP display, IVs, EVs, four equipped moves, and Move Relearner
