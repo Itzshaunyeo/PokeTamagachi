@@ -1,41 +1,40 @@
 # PokeTamagachi
 
-A nostalgic desktop virtual-pet game with a persistent, single-companion lifecycle and a data-driven Pokémon directory.
+## What this game is about
 
-## Features
+PokeTamagachi is a small, pixel-art Pokémon virtual-pet game for Windows. It sits in a corner of the desktop and lets you raise one persistent companion from an egg into its later evolutionary forms. The game combines daily Tamagotchi-style care, Pokémon training and move management, and turn-based battles with other players on the same Wi-Fi network.
 
-- Choose one companion from 61 evolving families connected to the original Kanto Pokédex.
-- Real-time hunger, happiness, energy, hygiene, and health decay—even while the app is closed.
-- Feed, play, rest, clean, and heal actions with a persistent care journal.
-- Each unique care action grants `+2 EXP` once per local day. Completing all five while every need is at least 60 builds a healthy daily streak worth `+20 EXP` per streak day, capped at day 7 and `+140 EXP`.
-- The selected companion remains locked until its lifecycle ends and the user restarts.
-- Roster entries live in `src/catalog.js`, making future additions a one-record update.
-- Desktop-ready Electron shell with a responsive browser fallback.
-- Compact frameless widget that opens at the bottom-right of the Windows work area.
-- Draggable title bar with always-on-top, minimize, and close controls.
-- Remembers its dragged screen position between launches.
-- Pokémon-inspired pixel iconography: Poké Ball branding plus Great, Premier, Master, berry, and moon care icons.
-- Simple animated Poké Ball starter screen and animated companion idle art.
-- One-click starter selection without browser prompts.
-- Every selectable Pokémon begins a multi-stage family containing an original Kanto species. Later baby forms such as Munchlax, Pichu, Elekid, and Magby are retained, while unrelated single-stage species are excluded. Eevee retains all Generation 1–5 Eeveelutions.
-- Every new starter begins as a mystery egg. The egg hatches after 24 hours and at least three care interactions; evolution time starts when it hatches.
-- Battles award EXP and drive progression. Existing official level thresholds are preserved; friendship, stone, daytime, and trade evolutions use level 20 as an average substitute. Later stages use level 30 or 35 where needed to prevent skipping stages.
-- Eevee randomly evolves at level 20 into a Generation 1–5 option: Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, or Glaceon.
-- Evolution is never automatic. Once a requirement is met, a red **Evolve** button appears beside the Pokémon’s name; each press confirms one evolution stage, with Eevee’s random branch chosen at confirmation time.
-- Pokémon learn moves by level, equip four at a time, and can relearn archived moves.
-- Form-specific level-up learnsets, move power, type, PP, priority, and critical-hit stages are bundled from Pokémon Black/White data via PokéAPI. Battles apply STAB, resistance, weakness, dual-type multipliers, and immunities, with effectiveness and critical-hit feedback in the dialogue.
-- LAN battle hosting and discovery lets nearby desktop players battle over the same Wi‑Fi network.
-- The active-pet directory is a private Battle/Train hub: Battle lists each discovered LAN opponent, while Train shows level, EXP, IVs, EVs, equipped moves, pending moves, evolution requirements, and the Move Relearner.
-- Send a hatched Pokémon to Daycare from Train for a two-hour (`2:00:00`) solo training session. A live countdown shows its return time, LAN battles remain locked while it is away, and EXP is awarded on return.
-- The starter directory is hidden after selection and only returns when no living companion exists.
+## How to play
 
-## Run
+Choose a starter family and your new companion will begin as an egg. Care for the egg until it hatches, then keep its hunger, happiness, energy, hygiene, and health in good condition by using the Habitat actions. Care actions give a small amount of daily EXP, while maintaining a healthy routine builds a bonus EXP streak. Open Train to inspect levels, EXP, IVs, EVs, and moves, relearn moves, or send your Pokémon to Daycare for a two-hour training session. Open Battle to host a room or join another player on the same LAN, then choose a move each round. Battles and training award EXP. When your Pokémon reaches its evolution requirement, a red Evolve button appears beside its name so you can decide when to evolve it.
+
+## How to run
+
+Install [Node.js](https://nodejs.org/) first. Download or clone this repository, open a terminal in the project folder, and run:
 
 ```bash
 npm install
 npm start
 ```
 
-For a dependency-free preview, open `index.html` in a browser. Run logic tests with `npm test`.
+The app opens as a compact, always-on-top desktop widget. Drag the title bar to place it in any corner of the screen. Progress is saved locally and continues to update while the app is closed.
 
-Pokémon names and sprite links are used for this fan-made prototype. Pokémon is owned by Nintendo, Game Freak, and Creatures.
+## Features
+
+- Persistent egg, hatching, care, leveling, and manual evolution lifecycle
+- Five care needs: hunger, happiness, energy, hygiene, and health
+- Daily care EXP and a healthy-care streak bonus
+- Level and EXP display, IVs, EVs, four equipped moves, and Move Relearner
+- Official-style level-up learnsets, Pokémon typings, move typings, power, PP, priority, critical hits, and type effectiveness
+- Two-hour Daycare training with a live return timer
+- Gen 5-inspired turn-based LAN battles for players on the same Wi-Fi network
+- Compact frameless Windows layout with drag, minimize, close, and always-on-top behavior
+- Local save data that preserves the chosen companion and its progress
+
+## App information
+
+The starter directory contains 61 evolving families connected to the original 151 Pokémon. Single-stage Kanto Pokémon are excluded, but Pokémon such as Snorlax remain available through later-generation baby forms. The available starters are Bulbasaur, Charmander, Squirtle, Caterpie, Weedle, Pidgey, Rattata, Spearow, Ekans, Pichu, Sandshrew, Nidoran♀, Nidoran♂, Cleffa, Vulpix, Igglybuff, Zubat, Oddish, Paras, Venonat, Diglett, Meowth, Psyduck, Mankey, Growlithe, Poliwag, Abra, Machop, Bellsprout, Tentacool, Geodude, Ponyta, Slowpoke, Magnemite, Doduo, Seel, Grimer, Shellder, Gastly, Drowzee, Krabby, Voltorb, Exeggcute, Cubone, Koffing, Rhyhorn, Horsea, Goldeen, Staryu, Magikarp, Eevee, Omanyte, Kabuto, Dratini, Tyrogue, Happiny, Mime Jr., Smoochum, Elekid, Magby, and Munchlax.
+
+Every starter can evolve. Pokémon with official level-based evolutions use their game levels; evolutions that normally require friendship, stones, trades, time of day, or another special condition use an adapted level requirement. Eevee evolves randomly at level 20 into Vaporeon, Jolteon, Flareon, Espeon, Umbreon, Leafeon, or Glaceon.
+
+PokeTamagachi is a fan-made prototype. Pokémon names and artwork belong to Nintendo, Game Freak, and Creatures. The project is licensed under the MIT License.
