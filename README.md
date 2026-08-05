@@ -22,6 +22,7 @@ The app opens as a compact, always-on-top desktop widget. Drag the title bar to 
 ## Features
 
 - Persistent egg, hatching, care, leveling, and manual evolution lifecycle
+- A hidden 1-in-4,096 shiny chance revealed when the egg hatches
 - Optional permanent Pokémon nicknames; default names follow the current evolution
 - Five care needs: hunger, happiness, energy, hygiene, and health
 - Daily care EXP and a healthy-care streak bonus
