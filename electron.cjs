@@ -25,7 +25,7 @@ function createWindow() {
     maxWidth: 520, maxHeight: 760,
     x: savedPosition?.x ?? x + width - windowWidth - 18,
     y: savedPosition?.y ?? y + height - windowHeight - 18,
-    backgroundColor: '#f3eee4', title: 'PokeTamagachi',
+    backgroundColor: '#f3eee4', title: 'PokeTamagachi', icon: path.join(__dirname, 'assets', 'poketamagachi.ico'),
     frame: false, resizable: true, alwaysOnTop: true,
     webPreferences: { contextIsolation: true, sandbox: true, preload: path.join(__dirname, 'preload.cjs') }
   });
@@ -54,6 +54,7 @@ ipcMain.handle('lan:room-status',(_event,peer)=>lanBattle.roomStatus(peer));
 ipcMain.handle('lan:challenge',(_event,peer,payload)=>lanBattle.challenge(peer,payload));
 
 app.whenReady().then(() => {
+  app.setAppUserModelId('com.poketamagachi.desktop');
   createWindow();
   app.on('activate', () => BrowserWindow.getAllWindows().length || createWindow());
 });
