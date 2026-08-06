@@ -5,3 +5,4 @@
 #view>.feature-page .stat-grid>div{background:#fff}
 .hub-page.device-shell-page{display:block;background:#2024269e!important}.hub-page .shared-device{display:grid;place-items:center;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}#view>.hub-page .hub-dialog .hub-card span{font-size:11px;line-height:1.15}
 .relearn-card{grid-template-columns:1fr auto;align-items:center}.relearn-card>strong,.relearn-card>span{grid-column:1}.relearn-card>button{grid-column:2;grid-row:1/3;min-width:112px}.relearn-dialog p{min-height:0}.relearn-choices{display:grid;grid-template-columns:1fr 1fr;gap:9px}.relearn-choices button{min-width:0;border:3px solid var(--ink);border-radius:8px;background:var(--lime);padding:10px 5px;font:700 12px var(--px-font);cursor:pointer;box-shadow:3px 3px 0 var(--ink)}.relearn-choices button:active{transform:translate(3px,3px);box-shadow:none}
+.relearn-card>button:disabled{background:#aaa;color:#555;cursor:not-allowed}
