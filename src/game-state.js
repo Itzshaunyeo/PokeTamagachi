@@ -1,5 +1,5 @@
 (function(root){
-  const MAX=100, HOUR=3600000, DAY=86400000, DAYCARE_DURATION=2*HOUR, SHINY_CHANCE=1/25;
+  const MAX=100, HOUR=3600000, DAY=86400000, DAYCARE_DURATION=2*HOUR, DAYCARE_EXP=300, SHINY_CHANCE=1/25;
   const clamp=n=>Math.max(0,Math.min(MAX,Math.round(n*100)/100));
   const dayKey=now=>{const date=new Date(now);return`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`};
   const previousDayKey=now=>{const date=new Date(now);date.setDate(date.getDate()-1);return dayKey(date)};
@@ -28,7 +28,7 @@
     const hours=Math.max(0,(now-pet.lastUpdated)/HOUR);let p=JSON.parse(JSON.stringify(pet)),s=p.stats;
     if(hours){if(p.isHatched){s.hunger=clamp(s.hunger-hours*5);s.energy=clamp(s.energy-hours*4)}s.happiness=clamp(s.happiness-hours*3);s.hygiene=clamp(s.hygiene-hours*3);const watched=p.isHatched?[s.hunger,s.happiness,s.energy,s.hygiene]:[s.happiness,s.hygiene],healthDrain=watched.reduce((total,value)=>total+(value<=0?12:value<15?5:0),0);s.health=clamp(s.health-hours*healthDrain+(healthDrain===0&&s.health<100?hours:0.5*hours));}
     updateGrowth(p,now);
-    if(p.isHatched&&p.daycareUntil&&now>=p.daycareUntil){const reward=100+p.level*10;p.daycareUntil=null;p.daycareStartedAt=null;p=gainExp(p,reward);p.journal.unshift({at:now,text:`Returned from Daycare and earned ${reward} EXP!`});s=p.stats;}
+    if(p.isHatched&&p.daycareUntil&&now>=p.daycareUntil){const reward=DAYCARE_EXP;p.daycareUntil=null;p.daycareStartedAt=null;p=gainExp(p,reward);p.journal.unshift({at:now,text:`Returned from Daycare and earned ${reward} EXP!`});s=p.stats;}
     p.lastUpdated=now;if(s.health<=0){p.alive=false;p.journal.unshift({at:now,text:`${p.name||'Your companion'} passed on. Your memories remain.`});}return p;
   }
   const effects={feed:{hunger:28,happiness:3,energy:-2},play:{happiness:24,energy:-12,hunger:-6,hygiene:-4},rest:{energy:36,health:5,hunger:-8},clean:{hygiene:40,happiness:3},heal:{health:30,energy:8,happiness:-3}};
@@ -39,5 +39,5 @@
     const labels={feed:'Shared a tasty berry.',play:'Played a lively little game.',rest:'Curled up for a good rest.',clean:'Freshened up the habitat.',heal:'Took some medicine.'};
     out.lastAction=now;out.journal.unshift({at:now,text:labels[action]});if(out.isHatched&&!isInDaycare(out,now)){const today=dayKey(now);if(out.careExpDay!==today){out.careExpDay=today;out.careExpActions=[]}if(!out.careExpActions.includes(action)){out.careExpActions.push(action);Object.assign(out,gainExp(out,2));out.journal.unshift({at:now,text:`First ${action} care today: +2 EXP.`})}const healthy=['hunger','happiness','energy','hygiene','health'].every(key=>out.stats[key]>=60);if(out.careExpActions.length===5&&healthy&&out.lastHealthyDay!==today){out.healthyStreak=out.lastHealthyDay===previousDayKey(now)?Math.min((out.healthyStreak||0)+1,7):1;out.lastHealthyDay=today;const reward=out.healthyStreak*20;Object.assign(out,gainExp(out,reward));out.journal.unshift({at:now,text:`Healthy care streak day ${out.healthyStreak}: +${reward} EXP!`})}}out.journal=out.journal.slice(0,30);return out;
   }
-  const api={newPet,advance,act,clamp,gainExp,learnMove,expForNext,checkEvolution,evolutionReady,evolve,awardBattle,useItem,recordOpponent,syncPokedex,isInDaycare,sendToDaycare,DAYCARE_DURATION,SHINY_CHANCE};root.PokeState=api;if(typeof module!=='undefined')module.exports=api;
+  const api={newPet,advance,act,clamp,gainExp,learnMove,expForNext,checkEvolution,evolutionReady,evolve,awardBattle,useItem,recordOpponent,syncPokedex,isInDaycare,sendToDaycare,DAYCARE_DURATION,DAYCARE_EXP,SHINY_CHANCE};root.PokeState=api;if(typeof module!=='undefined')module.exports=api;
 })(typeof window!=='undefined'?window:globalThis);
